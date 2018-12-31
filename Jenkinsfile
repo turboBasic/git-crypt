@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'phusion/baseimage'
+      args '--user root'
     }
 
   }
@@ -9,7 +10,7 @@ pipeline {
     stage('Dependencies') {
       steps {
         sh 'printenv | sort'
-        sh '''apt update && apt upgrade --yes
+        sh '''apt update
 apt install --yes make g++ libssl-dev'''
         sh 'g++ --version'
       }
