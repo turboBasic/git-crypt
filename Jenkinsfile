@@ -15,5 +15,16 @@ apt install --yes make g++ libssl-dev'''
         sh 'g++ --version'
       }
     }
+    stage('Build') {
+      steps {
+        sh '''make
+make install'''
+      }
+    }
+    stage('') {
+      steps {
+        library 'bob-testing'
+      }
+    }
   }
 }
