@@ -15,13 +15,16 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh '''make
-make install'''
+        sh '''
+          make
+          make install
+	'''
       }
     }
-    stage('Shared lib test') {
+    stage('Test running git-crypt') {
       steps {
-        library 'bob-testing'
+        sh 'which git-crypt'
+	sh 'git-crypt --version'
       }
     }
   }
