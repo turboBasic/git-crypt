@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'phusion/baseimage'
       args '--user root'
+      image 'turbobasic/gpp-alpine'
     }
 
   }
@@ -10,8 +10,6 @@ pipeline {
     stage('Dependencies') {
       steps {
         sh 'printenv | sort'
-        sh '''apt update
-apt install --yes make g++ libssl-dev'''
         sh 'g++ --version'
       }
     }
@@ -21,7 +19,7 @@ apt install --yes make g++ libssl-dev'''
 make install'''
       }
     }
-    stage('') {
+    stage('Shared lib test') {
       steps {
         library 'bob-testing'
       }
