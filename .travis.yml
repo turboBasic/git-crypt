@@ -1,0 +1,4 @@
+---
+language: cpp
+install: make libssl-dev
+...
